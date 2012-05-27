@@ -16,11 +16,10 @@ def lookup():
     myfile=os.popen("tail -f history.txt")
     while True:
         text=myfile.readline()
-        if(pre_text != text):
-            if(text != ""):
-                pre_text = text
-                url="http://dict.youdao.com/search?q=" + text
-                browser.open(url) 
+        if pre_text != text && text != "":
+            pre_text = text
+            url="http://dict.youdao.com/search?q=" + text
+            browser.open(url) 
     
          
 def webshow():
