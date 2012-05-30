@@ -76,7 +76,6 @@ def record_callback(reply):
                 #window.load(url)
                 #window.show()
                 #webshot.gtk.main()
-
                 os.system("/bin/bash -c \"echo -e %s  >> history.txt\"" % text)
 
 
