@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 # Simple demo for the RECORD extension
 # Not very much unlike the xmacrorec2 program in the xmacro package.
+import popen2
 import sys
 import os
 import webkit, gtk
@@ -69,14 +70,27 @@ def record_callback(reply):
             global pre_text
             global url
             if(pre_text != text):
-                pre_text = text
+                
+                pre_text = text.strip()
                 #cmd ="echo -e \'"+ text + "\'  >> history.txt"
                 url= text
+                fin,fout = popen2.popen2("tee -a history.txt")
+                fout.write(text)
+                fout.close()
                 #url="http://dict.youdao.com/search?q=" + text
                 #window.load(url)
                 #window.show()
                 #webshot.gtk.main()
-                os.system("/bin/bash -c \"echo -e %s  >> history.txt\"" % text)
+                #方法二:f.write
+                #f=open('history.txt','a')
+                #text=text+'\n'
+                #f.write(text)
+                #方法三:print
+                #f=open('history.txt','a')
+                #print >> f,text
+                #f.close()
+                #方法一echo
+                #os.system("/bin/bash -c \"echo -e %s  >> history.txt\"" % text)
 
 
             else:

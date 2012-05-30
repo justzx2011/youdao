@@ -16,10 +16,11 @@ def lookup():
     myfile=os.popen("tail -f history.txt")
     while True:
         text=myfile.readline()
-        if pre_text != text && text != "":
-            pre_text = text
-            url="http://dict.youdao.com/search?q=" + text
-            browser.open(url) 
+        if (pre_text != text): 
+            if (text != ""):
+                pre_text = text
+                url="http://dict.youdao.com/search?q=" + text
+                browser.open(url) 
     
          
 def webshow():
@@ -27,7 +28,7 @@ def webshow():
     global Alive
     window = gtk.Window()
     browser = webkit.WebView()
-    window.set_default_size(800,600)
+    window.set_default_size(480,320)
     window.set_resizable(True)
     window.add(browser)
     window.show_all()
